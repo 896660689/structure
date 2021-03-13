@@ -25,8 +25,8 @@ env:
   src_git: https://github.com/896660689/rt-n56u.git             # 源码地址
   config_dir: /opt/rt-n56u/trunk/configs/templates              # 设备模板目录
   toolchain_dir: /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x  # 工具链目录
-  toolchain_pkg: mipsel-linux-uclibc.tar.gz
-  toolchain_url: https://github.com/896660689/builb--padavan/releases/download/0320
+  toolchain_pkg: mipsel-linux-uclibc.tar.xz
+  toolchain_url: https://github.com/896660689/padavan-toolchain/releases/download/03.20
   ENABLED_CFG: |
     CONFIG_FIRMWARE_INCLUDE_LANG_CN
     CONFIG_FIRMWARE_ENABLE_IPV6
@@ -99,7 +99,7 @@ jobs:
           # sh dl_toolchain.sh
           mkdir -p $toolchain_dir && mkdir -p $images_dir
           curl -LO ${toolchain_url}/${toolchain_pkg}
-          tar -zxvf $toolchain_pkg -C $toolchain_dir
+          tar -xz $toolchain_pkg -C $toolchain_dir
       - name: Modify configs
         run: |                         # 修改配置文件
           cd $config_dir
